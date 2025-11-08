@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Very Special Message Just For You ❤️</title>
+    <style>
+        /* CSS for a beautiful, warm, and inviting look */
+        body {
+            font-family:'Arial', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Soft, Blush-Pink Gradient Background */
+            background: linear-gradient(135deg, #f7e1e6 0%, #e6a4b4 100%);
+            color: #5d4a66; /* Deep Mauve Text Color */
+            text-align: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95); /* Nearly opaque white box */
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Soft, pronounced shadow */
+            max-width: 90%;
+            width: 650px;
+            animation: slideIn 1.5s ease-out forwards; /* Beautiful slide-in animation */
+            opacity: 0; /* Start invisible for animation */
+        }
+
+        h1 {
+            color: #b23a48; /* Deep Rose Color */
+            font-size: 3em;
+            margin-bottom: 0.2em;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 2em;
+            color: #8c6a83;
+            font-style: italic;
+        }
+
+        .video-container {
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* Ensures the video player is responsive */
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Interactive Element (Sparkle Button) */
+        .sparkle-button {
+            background-color: #ffc300; /* Gold/Yellow Color */
+            color: #4a4a4a;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sparkle-button:hover {
+            background-color: #ffdb58; /* Lighter on hover */
+            transform: scale(1.08) rotate(-2deg); /* A little playful spin and grow */
+            box-shadow: 0 6px 15px rgba(255, 195, 0, 0.5); /* Glowing effect */
+        }
+
+        /* Keyframes for the Animation */
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>✨ Miss You, Babyyy! ✨</h1>
+        <p>I just wanted to send this little video to remind you how much you mean to me.</p>
+        <p>Listen closely to the message inside... it's all for you.</p>
+
+        <div class="video-container">
+            <video width="650" controls autoplay muted>
+                <source src="ssstik.io_@lzxvly05_1762570009798.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <button class="sparkle-button" onclick="alert('Sending you a thousand kisses! MWAAAMPS! 😘')">
+            Click Here for a Kiss!
+        </button>
+
+    </div>
+
+</body>
+</html>
