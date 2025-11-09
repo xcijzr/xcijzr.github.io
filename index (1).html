@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Sincere Apology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /*
+        * 1. Custom Font and Body
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.6s ease-in-out;
+            color: #374151;
+            min-height: 100vh;
+            /* Important: Ensures all stages are visible against the video */
+            background-color: transparent !important; 
+        }
+
+        /* The exact warm pink background used in the video */
+        .bg-exact-pink {
+            background-color: #black;
+        }
+        
+        /* * 2. Background Video Styling 
+        */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Puts the video behind all content */
+            opacity: 0; /* Starts hidden */
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        /*
+        * 3. Heart Animation (Hyper-Exact Jiggle/Pulse)
+        */
+        @keyframes jiggle-pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(2deg); }
+            70% { transform: scale(1.1) rotate(-2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .heart-pulsing {
+            animation: jiggle-pulse 1.3s infinite;
+            cursor: pointer; 
+            transition: opacity 0.3s;
+            color: #ef4444;
+        }
+
+        /*
+        * 4. Stage Containers
+        */
+        #container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* All stages are absolutely positioned */
+        #stage-0-initial, #stage-1-banner-wrapper, #stage-2-letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90%;
+        }
+
+        /* Initial state of Banner and Letter (hidden below) */
+        #stage-1-banner-wrapper, #stage-2-letter {
+            opacity: 0;
+            transform: translate(-50%, -50%) translateY(50px);
+            pointer-events: none; 
+        }
+
+        /* Stage 0: Initial state - Use a transparent background for this stage */
+        #stage-0-initial {
+            opacity: 1;
+            color: black; 
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Specific styles for the banner wrapper */
+        #stage-1-banner-content {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Specific styles for the open card */
+        #stage-2-letter {
+            width: 500px;
+            height: auto;
+            max-height: 85vh;
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 6px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        /* The closing signature style from the video */
+        .signature-style {
+            font-weight: 700;
+            line-height: 1.2;
+            color: #7d002a;
+        }
+
+        /*
+        * 5. State Management Classes (Controlled by JavaScript)
+        */
+
+        /* State 1: Closed Banner */
+        .state-1 #stage-0-initial { opacity: 0; pointer-events: none; }
+        .state-1 #stage-1-banner-wrapper {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* State 2: Open Letter */
+        .state-2 #stage-0-initial, .state-2 #stage-1-banner-wrapper { opacity: 0; pointer-events: none; }
+        .state-2 #stage-2-letter {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <video id="background-video" loop autoplay playsinline> 
+        <source src="ssstik.io_@sandysundaee_1759963692905.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="container" class="state-0">
+
+        <div id="stage-0-initial" class="flex flex-col items-center">
+            <p class="mb-3 text-lg font-medium tracking-wider">Click the heart!</p>
+            <div id="heart-0" class="heart-pulsing" onclick="advanceStage()">
+                <i data-lucide="heart" width="55" height="55"></i>
+            </div>
+        </div>
+
+        <div id="stage-1-banner-wrapper">
+            <div id="stage-1-banner-content" class="flex items-center bg-white py-3 px-6 rounded-md w-full max-w-sm">
+                <span class="text-xl font-bold text-gray-800 tracking-wider">DEAR MICHAELA,</span>
+                <div id="heart-1" class="heart-pulsing ml-4" onclick="advanceStage()">
+                    <i data-lucide="heart" width="30" height="30"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="stage-2-letter">
+            <h1 class="text-3xl font-extrabold mb-6 text-gray-900 tracking-wider">DEAR MICHAELA,</h1>
+
+            <div class="text-base space-y-4 text-gray-700 max-h-[70vh] overflow-y-auto pr-1 leading-relaxed">
+                <p>
+                    I'm here making this HTML coding to make a sincerely apology for all the upset moments of you that caused by me. I’m really sorry for making you upset.
+                </p>
+
+                <p>
+                    I am genuinely sorry for that feeling na nasasakal ka, and for the feeling na may obligation ka na mag-reply even though we are not in a relationship. That pressure was entirely my fault.
+                </p>
+
+                <p>
+                    I also want to say sorry for not saying I'm that kind of person who, once I like and love someone, I always want to know what they're doing, where they're up to, where they've been all along. I'm admitting that I'm a kind of person who is obsessed with presence, but inner in my heart, that's the way I express my love.
+                </p>
+
+                <p>
+                    Maybe for you, I'm just seeking for attention, but in mine, I just want to feel loved and noticed and reciprocate it. My actions came from a place of intense feeling, and I failed to manage that boundary.
+                </p>
+
+                <p>
+                    I know and I think na you don't want to talk to me again because of all the matters that happened, but I'm hoping that you will forgive me.
+                </p>
+
+                <p>
+                    I'm not asking for another chance, 'cuz you already said that there's no chance for me. I'm just hoping to you to acknowledge my apology and be forgiven.
+                </p>
+
+                <div class="text-left mt-8 pt-4 signature-style">
+                    With Love,<br>
+                    Jezz Gunda
+                </div>
+            </div>
+
+            <div id="heart-2" class="heart-pulsing mt-6" onclick="advanceStage()">
+                <i data-lucide="heart" width="40" height="40"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const video = document.getElementById('background-video');
+        let currentStage = 0; // 0: Initial, 1: Closed Banner, 2: Open Letter
+        let isAnimating = false;
+
+        function advanceStage() {
+            // Prevent multiple clicks during the transition
+            if (isAnimating) {
+                return;
+            }
+
+            isAnimating = true;
+
+            if (currentStage === 0) {
+                // Stage 0 -> Stage 1: On the first click, fade in the video AND UNMUTE it.
+                video.style.opacity = '1';
+                document.body.style.transition = 'none'; 
+                
+                // CRITICAL STEP: Programmatically unmute the video after the first user interaction.
+                video.muted = false;
+                // Since 'autoplay' might be blocked, ensure it starts playing with sound.
+                video.play().catch(error => {
+                    console.error("Video playback failed on first click:", error);
+                });
+            }
+            
+            // This is the old body background color transition effect
+            if (currentStage === 0 || currentStage === 2) {
+                document.body.classList.add('bg-exact-pink');
+            } else {
+                document.body.classList.remove('bg-exact-pink');
+            }
+
+
+            if (currentStage === 0) {
+                // Stage 0 -> Stage 1: Show Banner (1st click)
+                container.classList.remove('state-0');
+                container.classList.add('state-1');
+                currentStage = 1;
+            } else if (currentStage === 1) {
+                // Stage 1 -> Stage 2: Open Letter (2nd click)
+                container.classList.remove('state-1');
+                container.classList.add('state-2');
+                currentStage = 2;
+            } else if (currentStage === 2) {
+                // Stage 2 -> Stage 1: Close Letter (3rd click, returns to banner state)
+                container.classList.remove('state-2');
+                container.classList.add('state-1');
+                currentStage = 1;
+            }
+
+            // Unlock clicks after the transition period (700ms)
+            setTimeout(() => {
+                isAnimating = false;
+            }, 700);
+        }
+
+        // Initialize: Ensure icons are rendered
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            container.classList.add('state-0');
+            
+            // On page load, the video *should* start muted and silent due to 'autoplay' and 
+            // the initial state of the video element (which is not explicitly muted in the HTML). 
+            // We ensure it is not blocked by trying to play it here, which might fail 
+            // but is fine since the true volume activation is on the first click.
+            video.play().catch(error => {
+                console.error("Initial (silent) video play failed:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
